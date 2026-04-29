@@ -30,6 +30,7 @@ const contactForm = document.getElementById("contactForm");
 const sendWhatsApp = document.getElementById("sendWhatsApp");
 const sendEmail = document.getElementById("sendEmail");
 const formStatus = document.getElementById("formStatus");
+const accordionButtons = Array.from(document.querySelectorAll(".accordion__trigger"));
 
 function setHeaderState() {
   const isScrolled = window.scrollY > 12;
@@ -96,6 +97,100 @@ if ("IntersectionObserver" in window) {
 
   observedSections.forEach((section) => sectionObserver.observe(section));
 }
+
+function setAccordionState(button, shouldOpen) {
+  const panelId = button.getAttribute("aria-controls");
+  const panel = panelId ? document.getElementById(panelId) : null;
+
+  if (!panel) return;
+
+  button.setAttribute("aria-expanded", String(shouldOpen));
+  button.classList.toggle("is-open", shouldOpen);
+  panel.classList.toggle("is-open", shouldOpen);
+
+  if (shouldOpen) {
+    panel.hidden = false;
+    panel.style.height = `${panel.scrollHeight}px`;
+
+    const handleTransitionEnd = (event) => {
+      if (event.propertyName !== "height") return;
+      panel.style.height = "auto";
+      panel.removeEventListener("transitionend", handleTransitionEnd);
+    };
+
+    panel.addEventListener("transitionend", handleTransitionEnd);
+    return;
+  }
+
+  panel.style.height = `${panel.scrollHeight}px`;
+
+  requestAnimationFrame(() => {
+    panel.style.height = "0px";
+  });
+
+  const handleTransitionEnd = (event) => {
+    if (event.propertyName !== "height") return;
+    panel.hidden = true;
+    panel.removeEventListener("transitionend", handleTransitionEnd);
+  };
+
+  panel.addEventListener("transitionend", handleTransitionEnd);
+}
+
+function moveAccordionFocus(targetIndex) {
+  const total = accordionButtons.length;
+  if (!total) return;
+
+  const normalizedIndex = (targetIndex + total) % total;
+  accordionButtons[normalizedIndex].focus();
+}
+
+accordionButtons.forEach((button, index) => {
+  if (button.dataset.accordionBound === "true") return;
+  button.dataset.accordionBound = "true";
+
+  const isExpanded = button.getAttribute("aria-expanded") === "true";
+  const panelId = button.getAttribute("aria-controls");
+  const panel = panelId ? document.getElementById(panelId) : null;
+
+  button.classList.toggle("is-open", isExpanded);
+
+  if (panel) {
+    panel.hidden = !isExpanded;
+    panel.classList.toggle("is-open", isExpanded);
+    panel.style.height = isExpanded ? "auto" : "0px";
+  }
+
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const shouldOpen = button.getAttribute("aria-expanded") !== "true";
+    setAccordionState(button, shouldOpen);
+  });
+
+  button.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      moveAccordionFocus(index + 1);
+    }
+
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      moveAccordionFocus(index - 1);
+    }
+
+    if (event.key === "Home") {
+      event.preventDefault();
+      moveAccordionFocus(0);
+    }
+
+    if (event.key === "End") {
+      event.preventDefault();
+      moveAccordionFocus(accordionButtons.length - 1);
+    }
+  });
+});
 
 function removeControlCharacters(value, allowLineBreaks = false) {
   const controlPattern = allowLineBreaks ? /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g : /[\u0000-\u001F\u007F]/g;
