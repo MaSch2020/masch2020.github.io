@@ -22,7 +22,7 @@
 4. Copiar `deploy/_headers` a la raiz publicada si Cloudflare Pages no toma headers desde `/deploy`.
 5. Configurar el dominio personalizado.
 6. Activar HTTPS y revisar que la landing cargue sin errores CSP en DevTools.
-7. Reemplazar `https://tudominio.com/`, WhatsApp, email, GitHub y la imagen Open Graph antes de publicar.
+7. Verificar `https://masch2020.github.io/`, WhatsApp, email, GitHub y la imagen Open Graph antes de publicar.
 
 ## Despliegue detras de Cloudflare con hosting propio
 1. Servir el sitio con Nginx o Apache usando los ejemplos de `/deploy`.
@@ -46,9 +46,9 @@
 - Reglas de challenge para exceso de requests a `/` o `/assets/*` solo si los logs lo justifican.
 
 ## Checklist antes de publicar
-- Cambiar `https://tudominio.com/` por el dominio real.
-- Cambiar `595XXXXXXXXX` por el numero real de WhatsApp.
-- Cambiar `contacto@tudominio.com` por el correo real.
+- Confirmar `https://masch2020.github.io/` como dominio activo.
+- Confirmar `595971141032` como numero de WhatsApp.
+- Confirmar `alemateo07@gmail.com` como correo de contacto.
 - Cambiar `https://github.com/tuusuario`.
 - Agregar `assets/img/og-image.jpg` o ajustar `og:image`.
 - Verificar que no haya `.env`, logs, backups o archivos internos publicados.

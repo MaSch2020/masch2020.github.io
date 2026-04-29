@@ -1,7 +1,5 @@
-const CONTACT = {
-  whatsapp: "595XXXXXXXXX",
-  email: "contacto@tudominio.com"
-};
+const WHATSAPP_NUMBER = "595971141032";
+const EMAIL_TO = "alemateo07@gmail.com";
 
 const FIELD_LIMITS = {
   name: 80,
@@ -17,6 +15,9 @@ const ALLOWED_SERVICES = new Set([
   "Monitoreo",
   "Automatización",
   "Gestión de proyecto",
+  "Página web / landing page",
+  "Portfolio profesional",
+  "Catálogo web",
   "Otro"
 ]);
 
@@ -213,7 +214,7 @@ function openWhatsApp() {
   const values = validateForm();
   if (!values) return;
 
-  const whatsappNumber = normalizeContactValue(CONTACT.whatsapp, /^[0-9X]+$/);
+  const whatsappNumber = normalizeContactValue(WHATSAPP_NUMBER, /^[0-9]+$/);
   if (!whatsappNumber) {
     formStatus.textContent = "El enlace de WhatsApp no está configurado correctamente.";
     return;
@@ -229,7 +230,7 @@ function openEmail() {
   const values = validateForm();
   if (!values) return;
 
-  const emailAddress = normalizeContactValue(CONTACT.email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+  const emailAddress = normalizeContactValue(EMAIL_TO, /^[^\s@]+@[^\s@]+\.[^\s@]+$/);
   if (!emailAddress) {
     formStatus.textContent = "El correo de contacto no está configurado correctamente.";
     return;

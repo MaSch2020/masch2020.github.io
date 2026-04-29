@@ -92,6 +92,10 @@ textarea {
   background: #edf8fa;
 }
 
+.section--web {
+  background: #f8fcff;
+}
+
 .section--contact {
   background: linear-gradient(180deg, #f7fbfd 0%, #ffffff 100%);
 }
@@ -239,6 +243,31 @@ textarea {
 .btn--secondary:hover {
   border-color: rgba(22, 182, 196, 0.8);
   box-shadow: var(--shadow-soft);
+}
+
+.btn--mail {
+  color: var(--navy);
+  border-color: var(--line);
+  background: #f8fbfd;
+}
+
+.btn--whatsapp {
+  color: #fff;
+  background: #25D366;
+  border-color: #25D366;
+  box-shadow: 0 10px 20px rgba(37, 211, 102, 0.25);
+}
+
+.btn--whatsapp:hover {
+  background: #1ebe5d;
+  border-color: #1ebe5d;
+}
+
+.whatsapp-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 0.5rem;
+  flex: 0 0 18px;
 }
 
 .btn--light {
@@ -533,6 +562,25 @@ h3 {
 .section-note {
   margin: 1.5rem 0 0;
   font-weight: 700;
+}
+
+.web-service {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: 1.35rem;
+}
+
+.web-service p {
+  color: var(--muted);
+}
+
+.web-service__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1rem;
 }
 
 .services-grid {
