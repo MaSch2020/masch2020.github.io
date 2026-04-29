@@ -1,18 +1,18 @@
 :root {
-  --navy: #0b1f33;
-  --navy-2: #12344f;
-  --petrol: #0f4c5c;
-  --cyan: #16b6c4;
-  --green: #21a67a;
-  --ink: #17202a;
-  --muted: #5f6f80;
-  --line: #dce5ed;
-  --soft: #f4f8fb;
+  --navy: #0b1f17;
+  --navy-2: #123c2a;
+  --petrol: #1f5c43;
+  --cyan: #3ddc97;
+  --green: #2ecc71;
+  --ink: #10231b;
+  --muted: #5e6f66;
+  --line: #dbe7df;
+  --soft: #f4f7f5;
   --white: #ffffff;
-  --shadow: 0 18px 48px rgba(11, 31, 51, 0.12);
-  --shadow-soft: 0 10px 30px rgba(11, 31, 51, 0.08);
+  --shadow: 0 18px 48px rgba(11, 31, 23, 0.14);
+  --shadow-soft: 0 10px 30px rgba(11, 31, 23, 0.08);
   --radius: 8px;
-  --container: 1160px;
+  --container: 1180px;
 }
 
 * {
@@ -76,7 +76,7 @@ textarea {
 }
 
 .section {
-  padding: 5rem 0;
+  padding: 4.5rem 0;
 }
 
 .section--light {
@@ -89,7 +89,7 @@ textarea {
 }
 
 .section--local {
-  background: #edf8fa;
+  background: #edf7f1;
 }
 
 .section--web {
@@ -106,7 +106,7 @@ textarea {
   z-index: 100;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(220, 229, 237, 0.8);
+  border-bottom: 1px solid rgba(219, 231, 223, 0.9);
   transition: box-shadow 0.2s ease, background 0.2s ease;
 }
 
@@ -227,11 +227,11 @@ textarea {
 .btn--primary {
   color: var(--white);
   background: var(--petrol);
-  box-shadow: 0 10px 20px rgba(15, 76, 92, 0.2);
+  box-shadow: 0 10px 20px rgba(31, 92, 67, 0.25);
 }
 
 .btn--primary:hover {
-  background: #0b4150;
+  background: #174f39;
 }
 
 .btn--secondary {
@@ -248,7 +248,7 @@ textarea {
 .btn--mail {
   color: var(--navy);
   border-color: var(--line);
-  background: #f8fbfd;
+  background: #f7fbf8;
 }
 
 .btn--whatsapp {
@@ -264,6 +264,11 @@ textarea {
 }
 
 .whatsapp-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-icon {
   width: 18px;
   height: 18px;
   margin-right: 0.5rem;
@@ -283,19 +288,19 @@ textarea {
 }
 
 .hero {
-  min-height: calc(100vh - 78px);
+  min-height: min(860px, calc(100vh - 78px));
   display: flex;
   align-items: center;
   background:
     linear-gradient(135deg, rgba(244, 248, 251, 0.95) 0%, rgba(237, 248, 250, 0.72) 52%, rgba(255, 255, 255, 0.98) 100%);
-  padding-top: 4.5rem;
-  padding-bottom: 4.5rem;
+  padding-top: 3.75rem;
+  padding-bottom: 3.75rem;
 }
 
 .hero__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
-  gap: 3rem;
+  gap: 2.5rem;
   align-items: center;
 }
 
@@ -503,7 +508,7 @@ h3 {
 
 .section-heading {
   max-width: 760px;
-  margin-bottom: 2.2rem;
+  margin-bottom: 1.9rem;
 }
 
 .section-heading p,
@@ -560,7 +565,7 @@ h3 {
 }
 
 .section-note {
-  margin: 1.5rem 0 0;
+  margin: 1.25rem 0 0;
   font-weight: 700;
 }
 
@@ -585,6 +590,7 @@ h3 {
 
 .services-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .service-card,
@@ -720,6 +726,7 @@ h3 {
 
 .case-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .case-card strong {
@@ -728,6 +735,7 @@ h3 {
 
 .tech-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .tech-chips span {
@@ -756,6 +764,7 @@ h3 {
 
 .package-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .contact-grid {
@@ -939,6 +948,10 @@ textarea.is-invalid {
 }
 
 @media (max-width: 1024px) {
+  .section {
+    padding: 4rem 0;
+  }
+
   .hero__grid,
   .local-grid,
   .contact-grid {
@@ -955,6 +968,40 @@ textarea.is-invalid {
   }
 }
 
+@media (max-width: 768px) {
+  .section {
+    padding: 3.25rem 0;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 2.8rem;
+    padding-bottom: 2.8rem;
+  }
+
+  h1 {
+    font-size: 2.3rem;
+    line-height: 1.08;
+  }
+
+  h2 {
+    font-size: 1.9rem;
+    line-height: 1.14;
+  }
+
+  .hero__lead,
+  .section-heading p,
+  .section-note,
+  .local-grid p,
+  .contact-copy p {
+    font-size: 0.98rem;
+  }
+
+  .dashboard {
+    padding: 0.95rem;
+  }
+}
+
 @media (max-width: 860px) {
   .nav-toggle {
     display: inline-flex;
@@ -968,7 +1015,7 @@ textarea.is-invalid {
     display: none;
     flex-direction: column;
     align-items: stretch;
-    padding: 1rem;
+    padding: 0.9rem;
     background: var(--white);
     border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -1006,6 +1053,12 @@ textarea.is-invalid {
   .tech-grid {
     grid-template-columns: 1fr;
   }
+
+  .metric-grid,
+  .services-grid,
+  .package-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {
@@ -1014,7 +1067,7 @@ textarea.is-invalid {
   }
 
   .section {
-    padding: 3.25rem 0;
+    padding: 2.8rem 0;
   }
 
   .navbar {
@@ -1036,16 +1089,16 @@ textarea.is-invalid {
   }
 
   .hero {
-    padding-top: 3.25rem;
-    padding-bottom: 3.25rem;
+    padding-top: 2.4rem;
+    padding-bottom: 2.4rem;
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.05rem;
   }
 
   h2 {
-    font-size: 2.05rem;
+    font-size: 1.72rem;
   }
 
   .hero__grid {
@@ -1060,6 +1113,7 @@ textarea.is-invalid {
 
   .btn {
     width: 100%;
+    min-height: 48px;
   }
 
   .metric-grid,
@@ -1072,7 +1126,7 @@ textarea.is-invalid {
   }
 
   .dashboard {
-    padding: 0.9rem;
+    padding: 0.8rem;
   }
 
   .dashboard__top,
@@ -1086,5 +1140,62 @@ textarea.is-invalid {
 
   .contact-form {
     padding: 1rem;
+  }
+
+  .pain-card,
+  .service-card,
+  .case-card,
+  .package-card,
+  .tech-group {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .container {
+    width: min(100% - 1rem, var(--container));
+  }
+
+  .nav-toggle {
+    width: 42px;
+    height: 42px;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+    padding: 0.7rem 0.9rem;
+  }
+
+  .hero__actions,
+  .form-actions,
+  .final-cta__actions,
+  .web-service__actions {
+    gap: 0.65rem;
+  }
+}
+
+@media (max-width: 390px) {
+  h1 {
+    font-size: 1.9rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    width: min(100% - 0.9rem, var(--container));
+  }
+
+  .chip-list span,
+  .tech-chips span,
+  .area-list span {
+    font-size: 0.82rem;
+  }
+
+  .metric-card p {
+    font-size: 0.82rem;
   }
 }
