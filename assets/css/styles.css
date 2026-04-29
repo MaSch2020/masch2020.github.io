@@ -449,6 +449,22 @@ h3 {
   border-radius: inherit;
 }
 
+.bar__fill--network {
+  width: 92%;
+}
+
+.bar__fill--cctv {
+  width: 86%;
+}
+
+.bar__fill--projects {
+  width: 68%;
+}
+
+.bar__fill--automation {
+  width: 78%;
+}
+
 .dashboard__footer {
   color: var(--muted);
   font-size: 0.82rem;

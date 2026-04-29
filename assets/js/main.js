@@ -3,6 +3,23 @@ const CONTACT = {
   email: "contacto@tudominio.com"
 };
 
+const FIELD_LIMITS = {
+  name: 80,
+  company: 100,
+  city: 80,
+  message: 1000
+};
+
+const ALLOWED_SERVICES = new Set([
+  "Diagnóstico técnico",
+  "Redes corporativas",
+  "CCTV / seguridad física",
+  "Monitoreo",
+  "Automatización",
+  "Gestión de proyecto",
+  "Otro"
+]);
+
 const header = document.getElementById("siteHeader");
 const navToggle = document.getElementById("navToggle");
 const primaryMenu = document.getElementById("primaryMenu");
@@ -79,16 +96,53 @@ if ("IntersectionObserver" in window) {
   observedSections.forEach((section) => sectionObserver.observe(section));
 }
 
+function removeControlCharacters(value, allowLineBreaks = false) {
+  const controlPattern = allowLineBreaks ? /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g : /[\u0000-\u001F\u007F]/g;
+  return value.replace(controlPattern, "");
+}
+
+function normalizeSpaces(value, allowLineBreaks = false) {
+  if (allowLineBreaks) {
+    return value
+      .replace(/\r\n?/g, "\n")
+      .split("\n")
+      .map((line) => line.replace(/[ \t]+/g, " ").trim())
+      .join("\n")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
+  }
+
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function normalizeField(value, maxLength, allowLineBreaks = false) {
+  const normalized = String(value || "").normalize("NFC");
+  const withoutControls = removeControlCharacters(normalized, allowLineBreaks);
+  return normalizeSpaces(withoutControls, allowLineBreaks).slice(0, maxLength);
+}
+
+function normalizeContactValue(value, pattern) {
+  const normalized = String(value || "").trim();
+  return pattern.test(normalized) ? normalized : "";
+}
+
 function getFormValues() {
   const formData = new FormData(contactForm);
 
   return {
-    name: String(formData.get("name") || "").trim(),
-    company: String(formData.get("company") || "").trim(),
-    city: String(formData.get("city") || "").trim(),
-    service: String(formData.get("service") || "").trim(),
-    message: String(formData.get("message") || "").trim()
+    name: normalizeField(formData.get("name"), FIELD_LIMITS.name),
+    company: normalizeField(formData.get("company"), FIELD_LIMITS.company),
+    city: normalizeField(formData.get("city"), FIELD_LIMITS.city),
+    service: normalizeField(formData.get("service"), 60),
+    message: normalizeField(formData.get("message"), FIELD_LIMITS.message, true)
   };
+}
+
+function syncSanitizedValues(values) {
+  contactForm.elements.name.value = values.name;
+  contactForm.elements.company.value = values.company;
+  contactForm.elements.city.value = values.city;
+  contactForm.elements.message.value = values.message;
 }
 
 function setFieldError(fieldName, message) {
@@ -104,12 +158,27 @@ function setFieldError(fieldName, message) {
 
 function validateForm() {
   const values = getFormValues();
+  syncSanitizedValues(values);
+
   const errors = {
     name: values.name ? "" : "Indicá tu nombre para poder responderte.",
+    company: values.company.length <= FIELD_LIMITS.company ? "" : "La empresa no puede superar 100 caracteres.",
     city: values.city ? "" : "Indicá la ciudad donde está la infraestructura.",
-    service: values.service ? "" : "Seleccioná el servicio de interés.",
+    service: ALLOWED_SERVICES.has(values.service) ? "" : "Seleccioná el servicio de interés.",
     message: values.message ? "" : "Contame brevemente qué necesitás mejorar."
   };
+
+  if (values.name.length > FIELD_LIMITS.name) {
+    errors.name = "El nombre no puede superar 80 caracteres.";
+  }
+
+  if (values.city.length > FIELD_LIMITS.city) {
+    errors.city = "La ciudad no puede superar 80 caracteres.";
+  }
+
+  if (values.message.length > FIELD_LIMITS.message) {
+    errors.message = "El mensaje no puede superar 1000 caracteres.";
+  }
 
   Object.entries(errors).forEach(([field, message]) => setFieldError(field, message));
 
@@ -144,8 +213,14 @@ function openWhatsApp() {
   const values = validateForm();
   if (!values) return;
 
+  const whatsappNumber = normalizeContactValue(CONTACT.whatsapp, /^[0-9X]+$/);
+  if (!whatsappNumber) {
+    formStatus.textContent = "El enlace de WhatsApp no está configurado correctamente.";
+    return;
+  }
+
   const text = encodeURIComponent(buildMessage(values));
-  const url = `https://wa.me/${CONTACT.whatsapp}?text=${text}`;
+  const url = `https://wa.me/${whatsappNumber}?text=${text}`;
   formStatus.textContent = "Abriendo WhatsApp con el mensaje preparado.";
   window.open(url, "_blank", "noopener,noreferrer");
 }
@@ -154,9 +229,15 @@ function openEmail() {
   const values = validateForm();
   if (!values) return;
 
+  const emailAddress = normalizeContactValue(CONTACT.email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+  if (!emailAddress) {
+    formStatus.textContent = "El correo de contacto no está configurado correctamente.";
+    return;
+  }
+
   const subject = encodeURIComponent(`Solicitud de diagnóstico técnico - ${values.service}`);
   const body = encodeURIComponent(buildMessage(values));
-  const url = `mailto:${CONTACT.email}?subject=${subject}&body=${body}`;
+  const url = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
   formStatus.textContent = "Abriendo tu cliente de correo con el mensaje preparado.";
   window.location.href = url;
 }
@@ -164,7 +245,7 @@ function openEmail() {
 sendWhatsApp.addEventListener("click", openWhatsApp);
 sendEmail.addEventListener("click", openEmail);
 
-["name", "city", "service", "message"].forEach((fieldName) => {
+["name", "company", "city", "service", "message"].forEach((fieldName) => {
   const field = contactForm.elements[fieldName];
   field.addEventListener("input", () => setFieldError(fieldName, ""));
   field.addEventListener("change", () => setFieldError(fieldName, ""));

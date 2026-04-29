@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/styles.min.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -126,25 +126,25 @@
               <span class="metric-card__icon"></span>
               <p>Estado de red</p>
               <strong>Operativo</strong>
-              <div class="bar"><span style="width: 92%"></span></div>
+              <div class="bar"><span class="bar__fill bar__fill--network"></span></div>
             </article>
             <article class="metric-card">
               <span class="metric-card__icon metric-card__icon--cyan"></span>
               <p>CCTV</p>
               <strong>Monitoreado</strong>
-              <div class="bar"><span style="width: 86%"></span></div>
+              <div class="bar"><span class="bar__fill bar__fill--cctv"></span></div>
             </article>
             <article class="metric-card">
               <span class="metric-card__icon metric-card__icon--blue"></span>
               <p>Proyectos</p>
               <strong>En ejecución</strong>
-              <div class="bar"><span style="width: 68%"></span></div>
+              <div class="bar"><span class="bar__fill bar__fill--projects"></span></div>
             </article>
             <article class="metric-card">
               <span class="metric-card__icon metric-card__icon--green"></span>
               <p>Automatización</p>
               <strong>Activa</strong>
-              <div class="bar"><span style="width: 78%"></span></div>
+              <div class="bar"><span class="bar__fill bar__fill--automation"></span></div>
             </article>
           </div>
           <div class="dashboard__footer">
@@ -479,17 +479,17 @@
         <form class="contact-form" id="contactForm" novalidate>
           <div class="form-field">
             <label for="name">Nombre</label>
-            <input id="name" name="name" type="text" autocomplete="name" required>
+            <input id="name" name="name" type="text" autocomplete="name" maxlength="80" required>
             <small class="error-message" data-error-for="name"></small>
           </div>
           <div class="form-field">
             <label for="company">Empresa u organización</label>
-            <input id="company" name="company" type="text" autocomplete="organization">
+            <input id="company" name="company" type="text" autocomplete="organization" maxlength="100">
             <small class="error-message" data-error-for="company"></small>
           </div>
           <div class="form-field">
             <label for="city">Ciudad</label>
-            <input id="city" name="city" type="text" autocomplete="address-level2" required>
+            <input id="city" name="city" type="text" autocomplete="address-level2" maxlength="80" required>
             <small class="error-message" data-error-for="city"></small>
           </div>
           <div class="form-field">
@@ -508,7 +508,7 @@
           </div>
           <div class="form-field form-field--full">
             <label for="message">Mensaje</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
+            <textarea id="message" name="message" rows="5" maxlength="1000" required></textarea>
             <small class="error-message" data-error-for="message"></small>
           </div>
           <div class="form-actions">
@@ -559,6 +559,6 @@
     </svg>
   </button>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.min.js"></script>
 </body>
 </html>
