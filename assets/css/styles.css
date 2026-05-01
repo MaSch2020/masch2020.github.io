@@ -32,9 +32,15 @@ body {
   overflow-x: hidden;
   background: var(--bg-dark);
   color: var(--text-light);
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 16px;
   line-height: 1.65;
+}
+
+main,
+section,
+.container {
+  min-width: 0;
 }
 
 img,
@@ -136,9 +142,10 @@ textarea {
 
 .brand__name {
   color: var(--text-light);
-  font-size: 1.02rem;
+  font-size: 1.08rem;
   font-weight: 800;
-  letter-spacing: 0;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 .brand__tagline {
@@ -295,7 +302,10 @@ textarea {
   display: flex;
   align-items: center;
   padding: 96px 0 88px;
-  background: linear-gradient(145deg, var(--bg-dark) 0%, var(--bg-section) 56%, #0a241a 100%);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(36, 200, 117, 0.2), transparent 32%),
+    radial-gradient(circle at 12% 82%, rgba(79, 140, 255, 0.13), transparent 28%),
+    linear-gradient(145deg, var(--bg-dark) 0%, var(--bg-section) 56%, #0a241a 100%);
 }
 
 .hero__grid {
@@ -337,6 +347,7 @@ h1,
 h2,
 h3 {
   letter-spacing: 0;
+  overflow-wrap: anywhere;
 }
 
 h1 {
@@ -703,7 +714,7 @@ p {
 .timeline {
   display: grid;
   gap: 1rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .pain-grid,
@@ -711,7 +722,7 @@ p {
 .case-grid,
 .package-grid,
 .timeline {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .tech-grid {
@@ -728,6 +739,20 @@ p {
   padding: 1.35rem;
   background: var(--surface);
   box-shadow: none;
+}
+
+.service-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  border-radius: var(--radius);
+}
+
+.service-card h3 {
+  min-height: 3.2rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
 }
 
 .pain-card {
@@ -757,7 +782,7 @@ p {
 .service-card ul,
 .comparison__col ul,
 .package-card ul {
-  margin: 0.8rem 0 0;
+  margin: auto 0 0;
   padding-left: 1.1rem;
 }
 
@@ -966,12 +991,13 @@ textarea.is-invalid {
   padding: 2.4rem 0 1.2rem;
   background: #061811;
   color: var(--text-muted-light);
+  text-align: center;
 }
 
 .footer-grid {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   gap: 2rem;
 }
 
@@ -990,6 +1016,7 @@ textarea.is-invalid {
   margin-top: 1.4rem;
   padding-top: 1rem;
   border-top: 1px solid var(--border-light);
+  text-align: center;
 }
 
 .footer-legal {
@@ -997,6 +1024,7 @@ textarea.is-invalid {
   gap: 0.2rem;
   color: var(--text-muted-light);
   font-size: 0.9rem;
+  justify-items: center;
 }
 
 .footer-legal p {
@@ -1428,10 +1456,12 @@ textarea.is-invalid {
   padding: 2rem 0 1.1rem;
   border-top: 1px solid var(--border-light);
   background: #04130d;
+  text-align: center;
 }
 
 .footer-grid {
-  align-items: start;
+  align-items: center;
+  justify-content: center;
 }
 
 .site-footer p {
@@ -1446,6 +1476,7 @@ textarea.is-invalid {
 
 .footer-legal {
   line-height: 1.5;
+  justify-items: center;
 }
 
 .accordion-item {
@@ -1563,7 +1594,7 @@ textarea.is-invalid {
 
   .footer-grid,
   .footer-legal {
-    text-align: left;
+    text-align: center;
   }
 }
 

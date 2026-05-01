@@ -20,9 +20,9 @@
 2. Crear un proyecto en Cloudflare Pages conectado al repo.
 3. Configurar sin build command y con directorio de salida `/`.
 4. Copiar `deploy/_headers` a la raiz publicada si Cloudflare Pages no toma headers desde `/deploy`.
-5. Configurar el dominio personalizado.
+5. Configurar el dominio propio.
 6. Activar HTTPS y revisar que la landing cargue sin errores CSP en DevTools.
-7. Verificar `https://mateoschreiber.github.io/`, WhatsApp, email, GitHub y la imagen Open Graph antes de publicar.
+7. Verificar `https://jesareko.com/`, WhatsApp, email, GitHub y la imagen Open Graph antes de publicar.
 
 ## Despliegue detras de Cloudflare con hosting propio
 1. Servir el sitio con Nginx o Apache usando los ejemplos de `/deploy`.
@@ -46,7 +46,7 @@
 - Reglas de challenge para exceso de requests a `/` o `/assets/*` solo si los logs lo justifican.
 
 ## Checklist antes de publicar
-- Confirmar `https://mateoschreiber.github.io/` como dominio activo.
+- Confirmar `https://jesareko.com/` o el dominio definitivo de Jesareko como dominio activo.
 - Confirmar `595971141032` como numero de WhatsApp.
 - Confirmar `alemateo07@gmail.com` como correo de contacto.
 - Cambiar `https://github.com/tuusuario`.
@@ -57,7 +57,7 @@
 - Revisar consola del navegador por errores CSP.
 
 ## Formularios y datos reales
-Si en el futuro se procesan datos reales, usar un backend propio o un proveedor externo seguro con HTTPS, validacion server-side, rate limiting, proteccion anti-spam, politicas de privacidad y manejo adecuado de datos personales.
+Si en el futuro se procesan datos reales, usar un backend propio o un proveedor externo seguro con HTTPS, validacion server-side, rate limiting, proteccion anti-spam, politicas de privacidad y manejo adecuado de datos privados.
 
 ## Fuentes oficiales
 - Cloudflare DDoS Protection docs: https://developers.cloudflare.com/ddos-protection/

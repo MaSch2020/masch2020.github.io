@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = "595971141032";
+﻿const WHATSAPP_NUMBER = "595971141032";
 const EMAIL_TO = "alemateo07@gmail.com";
 
 const FIELD_LIMITS = {
@@ -10,14 +10,14 @@ const FIELD_LIMITS = {
 
 const ALLOWED_SERVICES = new Set([
   "Diagnóstico técnico",
-  "Redes corporativas",
-  "CCTV / seguridad física",
-  "Monitoreo",
+  "Infraestructura IT",
+  "Redes y WiFi",
+  "CCTV / cámaras y seguridad",
   "Automatización",
-  "Gestión de proyecto",
-  "Página web / landing page",
-  "Portfolio profesional",
-  "Catálogo web",
+  "Páginas web",
+  "Monitoreo",
+  "Soporte técnico",
+  "Gestión de proyectos",
   "Otro"
 ]);
 
@@ -257,11 +257,11 @@ function validateForm() {
   syncSanitizedValues(values);
 
   const errors = {
-    name: values.name ? "" : "Indicá tu nombre para poder responderte.",
+    name: values.name ? "" : "Indique su nombre para poder responder.",
     company: values.company.length <= FIELD_LIMITS.company ? "" : "La empresa no puede superar 100 caracteres.",
-    city: values.city ? "" : "Indicá la ciudad donde está la infraestructura.",
-    service: ALLOWED_SERVICES.has(values.service) ? "" : "Seleccioná el servicio de interés.",
-    message: values.message ? "" : "Contame brevemente qué necesitás mejorar."
+    city: values.city ? "" : "Indique la ciudad donde está la infraestructura.",
+    service: ALLOWED_SERVICES.has(values.service) ? "" : "Seleccione el servicio de interés.",
+    message: values.message ? "" : "Cuente brevemente qué necesita mejorar."
   };
 
   if (values.name.length > FIELD_LIMITS.name) {
@@ -281,7 +281,7 @@ function validateForm() {
   const firstInvalidField = Object.keys(errors).find((field) => errors[field]);
   if (firstInvalidField) {
     contactForm.elements[firstInvalidField].focus();
-    formStatus.textContent = "Revisá los campos marcados antes de enviar.";
+    formStatus.textContent = "Revise los campos marcados antes de enviar.";
     return null;
   }
 
@@ -293,7 +293,7 @@ function buildMessage(values) {
   const companyLine = values.company ? `Empresa u organización: ${values.company}` : "Empresa u organización: No indicada";
 
   return [
-    "Hola Mateo, quiero solicitar un diagnóstico técnico.",
+    "Hola Jesareko, quiero solicitar un diagnóstico técnico.",
     "",
     `Nombre: ${values.name}`,
     companyLine,
@@ -334,7 +334,7 @@ function openEmail() {
   const subject = encodeURIComponent(`Solicitud de diagnóstico técnico - ${values.service}`);
   const body = encodeURIComponent(buildMessage(values));
   const url = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
-  formStatus.textContent = "Abriendo tu cliente de correo con el mensaje preparado.";
+  formStatus.textContent = "Abriendo el cliente de correo con el mensaje preparado.";
   window.location.href = url;
 }
 
@@ -346,3 +346,4 @@ sendEmail.addEventListener("click", openEmail);
   field.addEventListener("input", () => setFieldError(fieldName, ""));
   field.addEventListener("change", () => setFieldError(fieldName, ""));
 });
+
