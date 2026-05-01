@@ -88,7 +88,7 @@ textarea {
 }
 
 .section {
-  padding: 88px 0;
+  padding: 72px 0;
   background: var(--bg-section);
   color: var(--text-light);
 }
@@ -436,7 +436,7 @@ p {
 
 .section-heading {
   max-width: 780px;
-  margin-bottom: 1.7rem;
+  margin-bottom: 1.25rem;
 }
 
 .section--light h2,
@@ -592,7 +592,7 @@ p {
 }
 
 .accordion {
-  margin-top: 1.25rem;
+  margin-top: 0.9rem;
 }
 
 .accordion-item {
@@ -1060,7 +1060,7 @@ textarea.is-invalid {
 
 @media (max-width: 1024px) {
   .section {
-    padding: 72px 0;
+    padding: 60px 0;
   }
 
   .hero {
@@ -1125,7 +1125,7 @@ textarea.is-invalid {
 
 @media (max-width: 768px) {
   .section {
-    padding: 64px 0;
+    padding: 52px 0;
   }
 
   .section-heading {
@@ -1150,7 +1150,7 @@ textarea.is-invalid {
   }
 
   .section {
-    padding: 56px 0;
+    padding: 46px 0;
   }
 
   .navbar {
@@ -1297,7 +1297,7 @@ textarea.is-invalid {
 .section-header,
 .section-heading {
   max-width: 760px;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.35rem;
 }
 
 .section-kicker,
@@ -1515,7 +1515,7 @@ textarea.is-invalid {
   .section--web,
   .section--navy,
   .section--contact {
-    padding: 64px 0;
+    padding: 56px 0;
   }
 
   .section--navy .comparison {
@@ -1536,7 +1536,7 @@ textarea.is-invalid {
   .section--web,
   .section--navy,
   .section--contact {
-    padding: 56px 0;
+    padding: 48px 0;
   }
 
   .section-header,
@@ -1570,7 +1570,7 @@ textarea.is-invalid {
   .section--web,
   .section--navy,
   .section--contact {
-    padding: 48px 0;
+    padding: 42px 0;
   }
 
   .section--web .web-service,
