@@ -707,6 +707,7 @@ p {
 }
 
 .pain-grid,
+.benefit-grid,
 .services-grid,
 .case-grid,
 .package-grid,
@@ -718,6 +719,7 @@ p {
 }
 
 .pain-grid,
+.benefit-grid,
 .services-grid,
 .case-grid,
 .package-grid,
@@ -730,6 +732,7 @@ p {
 }
 
 .card,
+.benefit-card,
 .service-card,
 .case-card,
 .package-card,
@@ -762,6 +765,10 @@ p {
   line-height: 1.45;
 }
 
+.benefit-card {
+  height: 100%;
+}
+
 .service-card__icon {
   width: 28px;
   height: 28px;
@@ -771,6 +778,7 @@ p {
 }
 
 .service-card p,
+.benefit-card p,
 .case-card p,
 .package-card p,
 .tech-group p,
@@ -816,6 +824,16 @@ p {
   margin: 0;
   color: var(--text-muted-light);
   font-weight: 700;
+}
+
+.cta-band--light {
+  border-color: var(--border-dark);
+  background: rgba(21, 152, 90, 0.08);
+  color: var(--text-dark);
+}
+
+.cta-band--light p {
+  color: var(--text-muted-dark);
 }
 
 .comparison {
@@ -1075,6 +1093,7 @@ textarea.is-invalid {
   }
 
   .services-grid,
+  .benefit-grid,
   .case-grid,
   .package-grid,
   .timeline,
@@ -1205,6 +1224,7 @@ textarea.is-invalid {
 
   .metric-grid,
   .pain-grid,
+  .benefit-grid,
   .services-grid,
   .case-grid,
   .package-grid,
@@ -1502,6 +1522,7 @@ textarea.is-invalid {
 }
 
 .accordion__panel-inner .service-card,
+.accordion__panel-inner .benefit-card,
 .accordion__panel-inner .case-card,
 .accordion__panel-inner .package-card,
 .accordion__panel-inner .tech-group,
